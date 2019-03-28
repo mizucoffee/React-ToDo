@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react';
 import Header from '../parts/Header'
-import { deleteTodo } from '../../services/todo'
+import { getTodo, deleteTodo } from '../../services/todo'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { inputTask, addTask } from '../../actions/tasks'
 
+import Style from '../../styles/common'
+
 function Show(props) {
+
+  const [data, setData] = useState(null);
+
+  if (data == null)
+    getTodo(props.match.params.id)
+      .then(result => {console.log(result);setData(result)})
+      .catch(e => console.log(e))
 
   function handleDelete(e) {
     deleteTodo(props.match.params.id)
@@ -16,9 +25,28 @@ function Show(props) {
   return (
     <div>
       <Header />
-      <h2>Show</h2>
-      <button onClick={e => props.history.push('/list')}>戻る</button>
-      <button onClick={handleDelete}>削除</button>
+      <h2 class={Style.title}>{data && data.data.todo.text}</h2>
+
+      <button onClick={handleDelete} style={{
+          fontSize: '32pt',
+          height: "48pt",
+          width: '200px',
+          'border-radius': '5px',
+          margin: '12px auto 24px',
+          display: 'block',
+          background: '#222',
+          color: '#fff'
+        }} >削除</button>
+        <button onClick={e => props.history.push('/list')} style={{
+          fontSize: '32pt',
+          height: "48pt",
+          width: '200px',
+          'border-radius': '5px',
+          margin: 'auto',
+          display: 'block',
+          background: '#222',
+          color: '#fff'
+        }} >戻る</button>
     </div>
   )
 }

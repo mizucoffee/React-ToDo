@@ -9,9 +9,19 @@ function Top(props) {
   return (
     <div>
       <Header />
-      <Logo />
-      <p>ようこそToDoへ。</p>
-      <Link to="/list">リスト</Link>
+      <div>
+        <Logo margin="64pt auto auto" display="block" width="500px" />
+      </div>
+      <button onClick={e => props.history.push('/list')} style={{
+        fontSize: '32pt',
+        height: "48pt",
+        width: '350px',
+        'border-radius': '5px',
+        margin: '48pt auto auto',
+        display: 'block',
+        background: '#222',
+        color: '#fff'
+      }} >メニューへ</button>
     </div>
   )
 }

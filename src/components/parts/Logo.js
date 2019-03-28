@@ -1,9 +1,13 @@
 import React from 'react'
-import { Samy, SvgProxy } from 'react-samy-svg';
 
 export default function Logo(props) {
   return (
-    <svg width="100px" height="100%" viewBox="0 0 1195 503" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg style={{
+      fill: `${props.color}`,
+      margin: `${props.margin}`,
+      display: `${props.display}`,
+      width: `${props.width}`
+      }} width="100px" height="100%" viewBox="0 0 1195 503" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <g transform="matrix(0.128255,0,0,2.73593,242.811,-917.969)">
         <rect x="590.215" y="427.451" width="428.254" height="91.927" />
       </g>

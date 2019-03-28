@@ -1,5 +1,12 @@
 import { css } from 'emotion';
 
-export const header = css({
+export default {
+  header: css({
     background: '#222'
-});
+  }),
+  logo: css({
+    fill: '#fff',
+    width: '800px',
+    margin: 'auto'
+  })
+}

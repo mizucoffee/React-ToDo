@@ -8,12 +8,27 @@ import Show from './components/pages/Show';
 
 import tasksReducer from './reducers/tasks';
 import { Provider } from 'react-redux';
+import { css, Global } from '@emotion/core'
 
 const store = createStore(tasksReducer)
+
+
+export const header = css({
+    background: '#222',
+
+});
 
 const App = () => (
   <BrowserRouter>
     <div>
+    <Global
+      styles={css`
+        * {
+          padding: 0;
+          margin: 0;
+        }
+      `}
+    />
       <Provider store={store}>
         <Switch>
           <Route exact path='/' component={Top} />
