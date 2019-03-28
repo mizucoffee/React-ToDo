@@ -1,14 +1,15 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import { withRouter } from 'react-router'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Header from '../parts/Header'
+import Logo from '../parts/Logo'
 import { inputTask, addTask } from '../../actions/tasks'
 
 function Top(props) {
   return (
     <div>
       <Header />
+      <Logo />
       <p>ようこそToDoへ。</p>
       <Link to="/list">リスト</Link>
     </div>
@@ -31,4 +32,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default withRouter(connect(mapStateToProps,mapDispatchToProps)(Top))
+export default connect(mapStateToProps, mapDispatchToProps)(Top)

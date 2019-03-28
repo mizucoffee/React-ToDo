@@ -1,29 +1,24 @@
 import React from 'react'
 import Header from '../parts/Header'
-import { addTodo } from '../../services/todo'
+import { deleteTodo } from '../../services/todo'
 import { withRouter } from 'react-router'
 import { connect } from 'react-redux'
 import { inputTask, addTask } from '../../actions/tasks'
 
-function Add(props) {
-  function handleInput(e) {
-    props.inputTask(e.target.value)
-  }
+function Show(props) {
 
-  function handleClick(e) {
-    console.log(props.input_text)
-    addTodo(props.input_text)
+  function handleDelete(e) {
+    deleteTodo(props.match.params.id)
       .then(result => props.history.push('/list'))
-      .catch(e => {console.err(e);props.history.push('/list')})
+      .catch(e => { console.log(e); props.history.push('/list') })
   }
 
   return (
     <div>
       <Header />
-      <h2>Add</h2>
-      <input type="text" onChange={handleInput} />
-      <button onClick={handleClick}>追加</button>
+      <h2>Show</h2>
       <button onClick={e => props.history.push('/list')}>戻る</button>
+      <button onClick={handleDelete}>削除</button>
     </div>
   )
 }
@@ -45,4 +40,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 // withRouterを使うとpropsにHistoryが渡される
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Add))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Show))
